@@ -107,7 +107,16 @@ python main.py \
 
 ## Jupyter Notebook
 
-Open `notebooks/cnn_experiments.ipynb` for a step-by-step interactive walkthrough of both experiments, including visualisations of training curves, confusion matrices, and hyperparameter effect plots.
+Open `notebooks/cnn_experiments.ipynb` for the **single consolidated notebook workflow**.  
+It is organized by the mandatory objectives and includes:
+
+- initial data analysis (class distribution, image-size checks, sample visualisation),
+- progressive-depth CNN comparison (simple → medium → deep),
+- hyperparameter tuning experiments,
+- explicit underfitting and overfitting demonstrations with explanations,
+- regularization experiments (dropout, weight decay, augmentation),
+- optimizer comparison (Adam, RMSprop, SGD),
+- and final evaluation with training curves, confusion matrix, and class metrics.
 
 ---
 

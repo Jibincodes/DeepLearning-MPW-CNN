@@ -115,7 +115,7 @@ def train(
         val_loader:     DataLoader for the validation / test set.
         num_epochs:     Total number of epochs.
         learning_rate:  Initial learning rate.
-        optimizer_name: ``'adam'`` or ``'sgd'``.
+        optimizer_name: ``'adam'``, ``'rmsprop'``, or ``'sgd'``.
         weight_decay:   L2 regularisation coefficient.
         scheduler_name: ``'step'``, ``'cosine'``, or ``'none'``.
         device:         Computation device; auto-detected if *None*.
@@ -137,6 +137,13 @@ def train(
         optimizer = torch.optim.Adam(
             model.parameters(), lr=learning_rate, weight_decay=weight_decay
         )
+    elif optimizer_name.lower() == "rmsprop":
+        optimizer = torch.optim.RMSprop(
+            model.parameters(),
+            lr=learning_rate,
+            weight_decay=weight_decay,
+            momentum=0.9,
+        )
     elif optimizer_name.lower() == "sgd":
         optimizer = torch.optim.SGD(
             model.parameters(),
@@ -146,7 +153,8 @@ def train(
         )
     else:
         raise ValueError(
-            f"Unknown optimizer '{optimizer_name}'. Choose 'adam' or 'sgd'."
+            f"Unknown optimizer '{optimizer_name}'. "
+            "Choose 'adam', 'rmsprop', or 'sgd'."
         )
 
     # LR scheduler
